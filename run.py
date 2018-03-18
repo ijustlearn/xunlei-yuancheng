@@ -86,9 +86,9 @@ def check_device_id(headers):
             selected_peer_id
         )
         data = {
-            "json":{"url":"magnet:?xt=urn:btih:TWRW462U6TVBPDHO75APH5Z2RS4HMY72"}
+            "json":'{"url":"magnet:?xt=urn:btih:TWRW462U6TVBPDHO75APH5Z2RS4HMY72"}'
         }
-        r = s.post(url,json=data)
+        r = s.post(url,data=data)
         print(r.text)
     except Exception as e:
         print('未找到cookies文件')
