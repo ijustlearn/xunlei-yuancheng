@@ -7,14 +7,14 @@ import os.path
 import re
 import time
 import urllib
-import urllib2
-import cookielib
+import urllib.request as  urllib2
+from http import cookiejar as cookielib
+# import cookielib
 import hashlib
 import base64
 
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
 LOG_LEVEL = logging.INFO
-
 logger = logging.getLogger()
 logger.setLevel(LOG_LEVEL)
 
@@ -270,11 +270,11 @@ class ThunderRemoteDownload(object):
 #         else:
 #             verification_code = verification_code[2:].upper()
 #         assert verification_code
-        print self.get_cookie('.xunlei.com', 'deviceid')
+        print(self.get_cookie('.xunlei.com', 'deviceid'))
         login_page = self.urlopen('https://login.xunlei.com/sec2login/?csrf_token={}'.format(hashlib.md5(self.get_cookie('.xunlei.com', 'deviceid')[:32]).hexdigest()), headers={'User-Agent': USER_AGENT},
                                   data={'u': username, 'p': password, 'verifycode': '', 'login_enable': '0',
                                         'business_type': '113', 'v': '101', 'cachetime': current_timestamp()})
-        print self.cookiejar._cookies
+        print(self.cookiejar._cookies)
         self.id = self.get_userid()
 
         if not self.double_check_login():
@@ -715,7 +715,7 @@ def convert_task(data):
 
 
 def parse_json_response(html):
-    m = re.match(ur'^\ufeff?rebuild\((\{.*\})\)$', html)
+    m = re.match('^\ufeff?rebuild\((\{.*\})\)$', html)
     if not m:
         logger.debug(html)
         raise RuntimeError('Invalid response')
@@ -807,7 +807,7 @@ def parse_gcid(url):
 
 def urlencode(x):
     def unif8(u):
-        if type(u) == unicode:
+        if type(u) == str:
             u = u.encode('utf-8')
         return u
 
@@ -894,7 +894,7 @@ def unescape_html(html):
 
 
 def to_utf_8(s):
-    if type(s) == unicode:
+    if type(s) == str:
         return s.encode('utf-8')
     else:
         return s
@@ -906,7 +906,7 @@ def md5(s):
 
 
 def ungzip(s):
-    from StringIO import StringIO
+    from io import StringIO
     import gzip
     buffer = StringIO(s)
     f = gzip.GzipFile(fileobj=buffer)
@@ -926,7 +926,7 @@ def is_dirty_resource(response_info):
 def encode_dirty_name(x):
     import base64
     try:
-        return unicode('[base64]' + base64.encodestring(x.encode('utf-8')).replace('\n', ''))
+        return '[base64]' + base64.encodestring(x.encode('utf-8')).replace('\n', '')
     except:
         return x
 

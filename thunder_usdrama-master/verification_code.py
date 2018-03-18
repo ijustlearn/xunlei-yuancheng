@@ -5,8 +5,8 @@ def file_path_verification_code_reader(path):
     def reader(image):
         with open(path, 'wb') as output:
             output.write(image)
-        print 'Verification code picture is saved to %s, please open it manually and enter what you see.' % path
-        code = raw_input('Verification code: ')
+        print('Verification code picture is saved to %s, please open it manually and enter what you see.' % path)
+        code = input('Verification code: ')
         return code
     return reader
 
