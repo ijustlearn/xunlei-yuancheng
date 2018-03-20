@@ -1,11 +1,12 @@
 import base64
+import os
 from http import cookiejar
 
 import js2py
 import requests
-from common import *
-from log import logger
-import os
+
+from common.common import *
+from common.log import logger
 
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
 class Xunlei(object):
@@ -307,6 +308,6 @@ class Xunlei(object):
         url_info = self.__resolve_url(url) #先解析种子
         # 添加任务
         logger.info("添加成功" if self.__addTask(url_info) == True else "添加失败" )
-
+        return True
     def gen_jsonp_function_name(self):
         return 'jQuery{}_{}'.format(id(self), current_timestamp())
