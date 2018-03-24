@@ -6,10 +6,9 @@ import getopt
 import json
 def usage():
     print("""
-    -h or --help : 显示帮助信息
     -u : 用户名 必填
     -p : 密码 必填
-    -c : 操作  getTaskInfo 获取任务信息
+    -c : 操作  taskInfo 获取任务信息
     """)
 def action(cmd,xunlei):
     if cmd == 'doneTaskList':  # 获取完成任务列表
@@ -42,10 +41,7 @@ if __name__ == '__main__':
     try:
         opts, args = getopt.getopt(sys.argv[1:], "hu:p:c:", ["help"])
         for cmd, arg in opts:  # 使用一个循环，每次从opts中取出一个两元组，赋给两个变量。cmd保存选项参数，arg为附加参数。接着对取出的选项参数进行处理。
-            if cmd in ("-h", "--help"):
-                print("help info")
-                sys.exit()
-            elif cmd in ("-u", "--username"):
+            if cmd in ("-u", "--username"):
                 username = arg
             elif cmd in ("-p", "--password"):
                 password = arg
@@ -55,7 +51,7 @@ if __name__ == '__main__':
             print("user and pass is required")
             sys.exit()
         xunlei = Xunlei(username, password)
-        if cmdStr is not None and cmdStr != 'getTaskInfo' and username and password:
+        if cmdStr is not None  and username and password:
             print(action(cmdStr,xunlei))
             sys.exit()
         while True:
