@@ -3,7 +3,7 @@
 ## 功能介绍
   用于[迅雷远程](http://yuancheng.xunlei.com/)账号自动登录,自动添加下载任务,自动查询下载任务进度列表
 ## 截图
-  ![](https://github.com/ijustlearn/xunlei-yuancheng/blob/master/image1.png) ![](https://github.com/ijustlearn/xunlei-yuancheng/blob/master/image2.png)
+  ![](https://github.com/ijustlearn/xunlei-yuancheng/blob/master/image1.png) ![]()
 ## windows安装使用
 1. 下载zip包
 2. 解压后 cd xunlei-yuancheng
